@@ -1,6 +1,7 @@
-from src import masks
+from src import widget
 
-masks.get_mask_card_number()
-from src import masks
+account_details = ()
+time_event = ()
 
-masks.get_mask_account()
+widget.mask_account_card(account_details)
+widget.get_gate(time_event)

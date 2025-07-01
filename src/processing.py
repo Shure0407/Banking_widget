@@ -1,6 +1,6 @@
-def filter_by_state(transactions, state):
-    """ Функция принимает список операций по карте и
-    возвращает новый список выполненных операций, с заданным состоянием """
+def filter_by_state(transactions: list[dict], state: tuple[()]) -> list[dict]:
+    """Функция принимает список операций по карте и
+    возвращает новый список выполненных операций, с заданным состоянием"""
 
     executed_transactions = []
     for transaction in transactions:
@@ -14,16 +14,16 @@ def filter_by_state(transactions, state):
     return executed_transactions
 
 
-def sort_by_date(transactions, sort):
-    """ Функция принимает список операций по карте и
-        возвращает список с сортировкой по дате """
+def sort_by_date(transactions: list[dict], sort: tuple[()]) -> list[dict]:
+    """Функция принимает список операций по карте и
+    возвращает список с сортировкой по дате"""
 
     if sort == "ascending_sort":
-        sorted_transactions_as = sorted(transactions, key=lambda transaction: transaction['date'])
-        return sorted_transactions_as
+        sorted_transactions_asc = sorted(transactions, key=lambda transaction: transaction["date"])
+        return sorted_transactions_asc
     elif sort == "descending_sort":
-        sorted_transactions_des = sorted(transactions, key=lambda transaction: transaction['date'], reverse=True)
-        return sorted_transactions_des
+        sorted_transactions_desc = sorted(transactions, key=lambda transaction: transaction["date"], reverse=True)
+        return sorted_transactions_desc
     else:
-        sorted_transactions_def = sorted(transactions, key=lambda transaction: transaction['date'], reverse=True)
+        sorted_transactions_def = sorted(transactions, key=lambda transaction: transaction["date"], reverse=True)
         return sorted_transactions_def

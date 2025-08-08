@@ -1,4 +1,7 @@
-def filter_by_state(transactions: list[dict], state: tuple[()]) -> list[dict]:
+from typing import Any
+
+
+def filter_by_state(transactions: list[dict], state: str) -> Any:
     """Функция принимает список операций по карте и
     возвращает новый список выполненных операций, с заданным состоянием"""
 
@@ -7,14 +10,14 @@ def filter_by_state(transactions: list[dict], state: tuple[()]) -> list[dict]:
         if transaction.get("state") and state != "":
             if transaction["state"] == state:
                 executed_transactions.append(transaction)
+        elif transaction["state"] == "EXECUTED":
+            executed_transactions.append(transaction)
         else:
-            if transaction["state"] == "EXECUTED":
-                executed_transactions.append(transaction)
-
+            print("Проверьте входные данные")
     return executed_transactions
 
 
-def sort_by_date(transactions: list[dict], sort: tuple[()]) -> list[dict]:
+def sort_by_date(transactions: list[dict], sort: str) -> Any:
     """Функция принимает список операций по карте и
     возвращает список с сортировкой по дате"""
 

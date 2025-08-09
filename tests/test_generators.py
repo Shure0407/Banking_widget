@@ -47,11 +47,11 @@ def data_tr() -> Any:
     )
 
 
-def test_filter_by_currency(data_tr: list) -> Any:
+def test_filter_by_currency(data_tr: Any) -> Any:
     """Тестирование с использованием фикстуры функции приема на вход список словарей, представляющих транзакции и
     возвращает итератор транзакций, где валюта операций соответствует заданной"""
 
-    assert generators.filter_by_currency(data_tr, "USD") == [
+    assert list(generators.filter_by_currency(data_tr, "USD")) == [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -71,7 +71,7 @@ def test_filter_by_currency(data_tr: list) -> Any:
             "to": "Счет 75651667383060284188",
         },
     ]
-    assert generators.filter_by_currency(data_tr, "RUB") == [
+    assert list(generators.filter_by_currency(data_tr, "RUB")) == [
         {
             "id": 945619570,
             "state": "EXECUTED",
@@ -91,19 +91,24 @@ def test_filter_by_currency(data_tr: list) -> Any:
             "to": "Счет 11776614605963066555",
         },
     ]
-    assert generators.filter_by_currency(data_tr, " ") == []
-    assert generators.filter_by_currency(data_tr, "_") == []
+    assert list(generators.filter_by_currency(data_tr, " ")) == []
+    assert list(generators.filter_by_currency(data_tr, "_")) == []
 
 
 def test_transaction_descriptions(data_tr: list) -> Any:
     """Тестирование с использованием фикстуры функции приема на вход список словарей, представляющих транзакции и
     возвращает описание каждой операции по очереди"""
-    assert generators.transaction_descriptions(data_tr) == [
+    assert list(generators.transaction_descriptions(data_tr)) == [
         "Перевод организации",
         "Перевод со счета на счет",
         "Перевод с карты на карту",
         "Перевод организации",
     ]
+    description = generators.transaction_descriptions(data_tr)
+    assert next(description) == "Перевод организации"
+    assert next(description) == "Перевод со счета на счет"
+    assert next(description) == "Перевод с карты на карту"
+    assert next(description) == "Перевод организации"
 
 
 def test_card_number_generator() -> Any:

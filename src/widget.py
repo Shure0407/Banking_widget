@@ -20,7 +20,8 @@ def mask_account_card(account_details: Any) -> Any:
 def get_date(time_event: Any) -> Any:
     """Функция выделения даты из временного события"""
 
-    if len(time_event) == 26 and time_event[0:4].isdigit() and time_event[5:7].isdigit() and time_event[8:10].isdigit():
+    if (len(time_event) == 26 and time_event[0:4].isdigit() and time_event[5:7].isdigit()
+            and time_event[8:10].isdigit()):
         date_format = f"{time_event[8:10]}.{time_event[5:7]}.{time_event[0:4]}"
         return date_format
     else:

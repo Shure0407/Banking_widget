@@ -22,16 +22,16 @@ def log(filename: Optional[str]) -> Callable:
                             f"Результат: {result}\nКонец: {time_end}\n\n"
                         )
                     file.close()
-                    return None
                 else:
                     print(f"Функция {name_function} ok. Результат: {result}")
+                return result
             except Exception as err:
                 name_function = function.__name__
                 if filename:
                     with open(filename, "a", encoding="utf-8") as file:
                         file.write(f"{name_function} error: {err}. Inputs: {args}, {kwargs}")
                     file.close()
-                    return None
+                    return f"{name_function} error: {err}. Inputs: {args}, {kwargs}"
                 else:
                     print(f"{name_function} error: {err}. Inputs: {args}, {kwargs}")
                 # raise

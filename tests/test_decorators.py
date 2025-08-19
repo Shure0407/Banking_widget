@@ -14,9 +14,9 @@ def test_function_ok(a: int, b: int) -> float:
 
 
 @log(filename="test_log_tmp.log")
-def test_function_fail(a: int, b: int) -> float:
+def test_function_fail(a: int, b: int) -> None:
     """Функция, которая вызывается с ошибкой деления на ноль."""
-    return a / b
+    assert a / b
 
 
 @log(None)

@@ -8,39 +8,44 @@ from src.decorators import log
 
 
 @log(None)
-def test_function_ok(a: int, b: int) -> float:
+def function_ok(a: int, b: int) -> float:
     """Функция, которая успешно складывает два числа."""
     return a + b
 
 
 @log(filename="test_log_tmp.log")
-def test_function_fail(a: int, b: int) -> None:
+def function_ok_filename(a: int, b: int) -> float:
+    """Функция, которая успешно умножает два числа."""
+    return a * b
+
+
+@log(filename="test_log_tmp.log")
+def function_fail(a: int, b: int) -> float | None:
     """Функция, которая вызывается с ошибкой деления на ноль."""
-    assert a / b
+    return a / b
 
 
 @log(None)
-def test_function_str_ok(a: str, b: str) -> str:
+def function_str_ok(a: str, b: str) -> str:
     """Функция, которая успешно соединяет две строки."""
     return a + b
 
 
 def test_log_to_console_str(capsys: Any) -> Any:
     """Функция проверки вывода в консоль"""
-    test_function_str_ok("hello", "world")
+    function_str_ok("hello", "world")
     captured = capsys.readouterr()
-    assert "Функция test_function_str_ok ok. Результат: helloworld\n" in captured.out
+    assert "Функция: function_str_ok ok. Результат: helloworld\n" in captured.out
 
 
 def test_log_to_console(capsys: Any) -> Any:
     """Проверяем, что без filename логи выводятся в консоль"""
-    test_function_ok(2, 3)
-
+    function_ok(2, 3)
     captured = capsys.readouterr()
-    assert "Функция test_function_ok ok. Результат: 5" in captured.out
+    assert "Функция: function_ok ok. Результат: 5" in captured.out
 
 
-def test_log_to_file() -> None:
+def test_log_to_file() -> Any:
     """Функция проверки записи в файл"""
     # Проверяем, что если есть filename - логи записываются в файл
     log_file_path = "test_log_tmp.log"
@@ -50,14 +55,20 @@ def test_log_to_file() -> None:
         os.remove(log_file_path)
 
     with pytest.raises(ZeroDivisionError):
-        test_function_fail(5, 0)
+        function_fail(5, 0)
 
     assert os.path.exists(log_file_path)
 
     with open(log_file_path, "r", encoding="utf-8") as f:  # Проверяем содержимое файла
         data = f.read()
-    assert "test_function_fail error: division by zero. Inputs: (5, 0), {}" in data
+    assert "function_fail error: division by zero. Inputs: (5, 0), {}" in data
 
     # По окончании теста можно удалить временный файл
     if os.path.exists(log_file_path):
         os.remove(log_file_path)
+
+    """Функция проверки записи в файл"""
+    function_ok_filename(4, 5)
+    with open(log_file_path, "r", encoding="utf-8") as f:  # Проверяем содержимое файла
+        data_1 = f.read()
+    assert "Функция: function_ok_filename ok. Результат: 20" in data_1

@@ -10,9 +10,9 @@ def mask_account_card(account_details: Any) -> Any:
     account_or_card = "".join(char for char in account_details if char.isdigit())
 
     if len(account_or_card) == 16:
-        return (f"{pay_system} {get_mask_card_number(account_or_card)}")
+        return f"{pay_system} {get_mask_card_number(account_or_card)}"
     elif len(account_or_card) == 20:
-        return (f"{pay_system} {get_mask_account(account_or_card)}")
+        return f"{pay_system} {get_mask_account(account_or_card)}"
     else:
         return print("Проверьте правильность введенного номера")
 

@@ -33,9 +33,9 @@ def log(filename: Optional[str] = None) -> Callable:
                         file.write(f"{name_function} error: {err}. Inputs: {args}, {kwargs}")
                     file.close()
                     # return f"{name_function} error: {err}. Inputs: {args}, {kwargs}"
-                # else:
-                #     return f"{name_function} error: {err}. Inputs: {args}, {kwargs}"
-                raise
+                else:
+                    # return f"{name_function} error: {err}. Inputs: {args}, {kwargs}"
+                    raise
 
         return wrapper
 

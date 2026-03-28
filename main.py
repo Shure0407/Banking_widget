@@ -52,3 +52,16 @@ data_excel = tables.tables_excel('C:/Users/Aleksandr/PycharmProjects/PythonProje
 # data_excel = tables.tables_excel('C:/Users/Aleksandr/PycharmProjects/PythonProject/data/transactions_not_list.xlsx')
 # data_excel = tables.tables_excel('C:/Users/Aleksandr/PycharmProjects/PythonProject/data/transactions_excel_empty.xlsx') # пустой файл
 print(data_excel)
+account_details = str()
+time_event = str()
+
+widget.mask_account_card(account_details)
+widget.get_date(time_event)
+
+transactions: list[dict] = []
+state = ()
+sort = ()
+
+processing.filter_by_state(transactions, state)
+processing.sort_by_date(transactions, sort)
+

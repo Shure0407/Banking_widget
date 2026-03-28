@@ -38,3 +38,16 @@ data_tr = utils.load_transactions('C:/Users/Aleksandr/PycharmProjects/PythonProj
 # for data in data_tr:
 #      result_conv = external_api.conversion(data)
 #      print(result_conv)
+account_details = str()
+time_event = str()
+
+widget.mask_account_card(account_details)
+widget.get_date(time_event)
+
+transactions: list[dict] = []
+state = ()
+sort = ()
+
+processing.filter_by_state(transactions, state)
+processing.sort_by_date(transactions, sort)
+

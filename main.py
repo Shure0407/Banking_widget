@@ -37,8 +37,8 @@ from src import tables
 #   'C:/Users/Aleksandr/PycharmProjects/PythonProject/data/operations_three_trans.json') # файл с тремя транзакциями
 # data_json = utils.load_transactions(
 #   'C:/Users/Aleksandr/PycharmProjects/PythonProject/data/operations_not_list.json') # файл не содержит список
-# data_json = utils.load_transactions("
-#   C:/Users/Aleksandr/PycharmProjects/PythonProject/data/operations_empty.json") # пустой файл
+# data_json = utils.load_transactions(
+#   "C:/Users/Aleksandr/PycharmProjects/PythonProject/data/operations_empty.json") # пустой файл
 # print(data_json)
 
 # for data in data_json:
@@ -54,8 +54,7 @@ from src import tables
 
 # data_excel = tables.tables_excel('C:/Users/Aleksandr/PycharmProjects/PythonProject/data/transactions_excel.xlsx')
 data_excel = tables.tables_excel(
-    "C:/Users/Aleksandr/PycharmProjects/PythonProject/data/transactions_excel_three_str.xlsx"
-)
+    "C:/Users/Aleksandr/PycharmProjects/PythonProject/data/transactions_excel_three_str.xlsx")
 # data_excel = tables.tables_excel(
 #   'C:/Users/Aleksandr/PycharmProjects/PythonProject/data/transactions_not_list.xlsx')
 # data_excel = tables.tables_excel(

@@ -13,12 +13,12 @@ logging.basicConfig(
 utils_logger = logging.getLogger(__name__)
 
 
-def load_transactions(path: str) -> Any:
+def load_transactions(path_json: str) -> Any:
     """Функция, которая принимает на вход путь к json файлу и
     возвращает список словарей с данными о финансовых транзакциях"""
 
     try:
-        with open(path, "r", encoding="utf-8") as tr:
+        with open(path_json, "r", encoding="utf-8") as tr:
             content = tr.read()
             if not content.strip():
                 utils_logger.error("json файл не имеет строк, пустой")

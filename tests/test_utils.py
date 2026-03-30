@@ -5,7 +5,7 @@ def test_load_transactions(path) -> list[dict] | None:
     """Тестирование функции, которая принимает на вход путь к json файлу и
     возвращает список словарей с данными о финансовых транзакциях"""
 
-    assert utils.load_transactions("C:/Users/Aleksandr/PycharmProjects/PythonProject/data/123.json") == [
+    assert utils.load_transactions("/data/operations_three_trans.json") == [
         {
             "id": 441945886,
             "state": "EXECUTED",
@@ -39,8 +39,8 @@ def test_load_transactions(path) -> list[dict] | None:
         utils.load_transactions("C:/Users/Aleksandr/PycharmProjects/PythonProject/data/12.json") == []
     )  # ошибка имени файла
     assert (
-        utils.load_transactions("C:/Users/Aleksandr/PycharmProjects/PythonProject/data/11.json") == []
+            utils.load_transactions("/data/operations_not_list.json") == []
     )  # неверный формат данных
     assert (
-        utils.load_transactions("C:/Users/Aleksandr/PycharmProjects/PythonProject/data/1.json") == []
+            utils.load_transactions("/data/operations_empty.json") == []
     )  # отсутствуют данные
